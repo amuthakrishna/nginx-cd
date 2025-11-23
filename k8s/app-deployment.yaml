@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: nginx-web
-          image: krishnamoorthy1/nginx-ci:442-23-11-2025
+          image: krishnamoorthy1/nginx-ci:443-23-11-2025
           ports:
             - containerPort: 80
 ---
