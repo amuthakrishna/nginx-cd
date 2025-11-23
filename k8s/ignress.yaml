@@ -6,8 +6,12 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - ngx.p7devs.com
+      secretName: p7devs-tls  
   rules:
-    - host: a985e83ef9df945c2810b6d7e3beb891-718627375.ap-south-1.elb.amazonaws.com
+    - host: ngx.p7devs.com
       http:
         paths:
           - path: /
