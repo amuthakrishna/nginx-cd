@@ -9,7 +9,7 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - ngx.p7devs.com
+        - dev-nginx.p7devs.com
       secretName: p7devs-tls  
   rules:
     - host: ngx.p7devs.com
