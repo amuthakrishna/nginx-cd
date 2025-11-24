@@ -12,7 +12,7 @@ spec:
         - dev-nginx.p7devs.com
       secretName: p7devs-tls  
   rules:
-    - host: ngx.p7devs.com
+    - host: dev-nginx.p7devs.com
       http:
         paths:
           - path: /
