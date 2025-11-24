@@ -1,21 +1,23 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: multi-app-ingress
+  name: multi-domain-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
         - dev-nginx.p7devs.com
-      secretName: p7devs-tls  
+        - dev-apache.p7devs.com
+      secretName: p7devs-tls
   rules:
+
+    # ------------------ NGINX APP ------------------
     - host: dev-nginx.p7devs.com
       http:
         paths:
-          - path: /nginx
+          - path: /
             pathType: Prefix
             backend:
               service:
@@ -23,7 +25,11 @@ spec:
                 port:
                   number: 80
 
-          - path: /apache
+    # ------------------ APACHE APP ------------------
+    - host: dev-apache.p7devs.com
+      http:
+        paths:
+          - path: /
             pathType: Prefix
             backend:
               service:
