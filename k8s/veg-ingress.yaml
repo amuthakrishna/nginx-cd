@@ -5,14 +5,15 @@ metadata:
   namespace: prod
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - p7devs.com
+    - dev-nginx.p7devs.com
     secretName: p7devs-tls
   rules:
-  - host: p7devs.com
+  - host: dev-nginx.p7devs.com
     http:
       paths:
       - path: /
