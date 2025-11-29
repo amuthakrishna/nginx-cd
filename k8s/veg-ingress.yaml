@@ -13,7 +13,7 @@ spec:
     - dev-nginx.p7devs.com
     secretName: p7devs-tls
   rules:
-  - host: dev-nginx.p7devs.com
+  - host: dev-nginx.p7devs.com # Update with your domain
     http:
       paths:
       - path: /
@@ -23,3 +23,4 @@ spec:
             name: veggold-service
             port:
               number: 8000
+
