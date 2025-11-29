@@ -1,32 +1,64 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-web
+  name: veggold
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: nginx-web
+      app: veggold
   template:
     metadata:
       labels:
-        app: nginx-web
+        app: veggold
     spec:
       containers:
-        - name: nginx-web
-          image: krishnamoorthy1/nginx-ci:444-23-11-2025
-          ports:
-            - containerPort: 80
+      - name: veggold
+        image: vegggold:v2
+        ports:
+        - containerPort: 8000
+        env:
+        - name: DB_CONNECTION
+          valueFrom:
+            configMapKeyRef:
+              name: veggold-config
+              key: DB_CONNECTION
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: veggold-config
+              key: DB_HOST
+        - name: DB_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: veggold-config
+              key: DB_PORT
+        - name: DB_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: veggold-config
+              key: DB_DATABASE
+        - name: DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: veggold-db-secret
+              key: DB_USERNAME
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: veggold-db-secret
+              key: DB_PASSWORD
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-web-service
+  name: veggold-service
 spec:
+  type: NodePort   # Or LoadBalancer in cloud
   selector:
-    app: nginx-web
+    app: veggold
   ports:
-    - port: 80
-      targetPort: 80
-      protocol: TCP
-  type: ClusterIP
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
