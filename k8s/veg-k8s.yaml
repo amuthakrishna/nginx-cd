@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: veggold
+  namespace: prod
 spec:
   replicas: 1
   selector:
@@ -17,6 +18,25 @@ spec:
         image: krishnamoorthy1/nginx-ci:veg
         ports:
         - containerPort: 8000
+        # ---- Probes Added ----
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8000
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+          successThreshold: 1
+
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8000
+          initialDelaySeconds: 20
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3        
         env:
         - name: DB_CONNECTION
           valueFrom:
@@ -56,8 +76,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: veggold-service
-spec:
-  type: NodePort   # Or LoadBalancer in cloud
+  namespace: prod
+spec:  
   selector:
     app: veggold
   ports:
