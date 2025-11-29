@@ -10,10 +10,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - dev-nginx.p7devs.com
+    - dev-veg.p7devs.com
     secretName: p7devs-tls
   rules:
-  - host: dev-nginx.p7devs.com # Update with your domain
+  - host: dev-veg.p7devs.com # Update with your domain
     http:
       paths:
       - path: /
