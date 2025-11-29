@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: veggold-config
+data:
+  DB_CONNECTION: mysql
+  DB_HOST: 43.204.228.100
+  DB_PORT: "3306"
+  DB_DATABASE: veggold_master
