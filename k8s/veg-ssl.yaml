@@ -1,11 +1,11 @@
-apiVersion: v1
-kind: Secret
-metadata:
-  name: p7devs-tls
-  namespace: prod
-type: kubernetes.io/tls
-data:
-  tls.crt: |
-    BASE64_ENCODED_CERTIFICATE
-  tls.key: |
-    BASE64_ENCODED_PRIVATE_KEY
+#apiVersion: v1
+#kind: Secret
+#metadata:
+#  name: p7devs-tls
+#  namespace: prod
+#type: kubernetes.io/tls
+#data:
+#  tls.crt: |
+#    BASE64_ENCODED_CERTIFICATE
+#  tls.key: |
+#    BASE64_ENCODED_PRIVATE_KEY
