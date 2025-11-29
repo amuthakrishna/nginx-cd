@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: veggold
-        image: vegggold:v2
+        image: krishnamoorthy1/nginx-ci:veg
         ports:
         - containerPort: 8000
         env:
