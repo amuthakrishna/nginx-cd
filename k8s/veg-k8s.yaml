@@ -50,6 +50,7 @@ spec:
               key: DB_PASSWORD
 ---
 
+
 apiVersion: v1
 kind: Service
 metadata:
